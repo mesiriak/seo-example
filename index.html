@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Demo Site</title>
+    <meta name="description" content="Демонстраційний сайт для лабораторної роботи з SEO-аудиту.">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 20px;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        footer {
+            background: #111827;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SEO Demo Site</h1>
+    <nav>
+        <a href="#home">Головна</a>
+        <a href="#services">Послуги</a>
+        <a href="#blog">Блог</a>
+        <a href="#contacts">Контакти</a>
+
+        <!-- Intentional broken links for SEO audit -->
+        <a href="old-blog.html">Старий блог</a>
+        <a href="contacts-old.html">Старі контакти</a>
+    </nav>
+</header>
+
+<main>
+
+    <section id="home">
+        <h2>Головна сторінка</h2>
+
+        <div class="card">
+            <p>
+                Це демонстраційний сайт для лабораторної роботи з технічного SEO-аудиту.
+                Сайт містить навмисно створені SEO-помилки для аналізу в Google Search Console та Seobility.
+            </p>
+        </div>
+
+        <!-- Image without alt attribute intentionally -->
+        <img src="https://picsum.photos/900/300" />
+    </section>
+
+    <section id="services">
+        <h2>SEO Послуги</h2>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Технічний аудит</h3>
+                <p>
+                    Аналіз структури сайту, індексації, швидкості та внутрішньої перелінковки.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>On-page SEO</h3>
+                <p>
+                    Оптимізація meta title, description, headings та контенту.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Link Building</h3>
+                <p>
+                    Побудова профілю зовнішніх посилань.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <h2>Блог</h2>
+
+        <article class="card">
+            <h3>Що таке SEO аудит?</h3>
+            <p>
+                SEO аудит — це процес перевірки технічного стану сайту для покращення його видимості у пошукових системах.
+            </p>
+            <a href="blog-page-1.html">Читати більше</a>
+        </article>
+
+        <article class="card">
+            <h3>Чому важливі redirect?</h3>
+            <p>
+                Redirect допомагають правильно перенаправляти користувачів та пошукових роботів.
+            </p>
+            <a href="blog-page-2.html">Читати більше</a>
+        </article>
+    </section>
+
+    <!-- Duplicate-like content intentionally -->
+    <section id="home-copy">
+        <h2>Головна сторінка</h2>
+
+        <div class="card">
+            <p>
+                Це демонстраційний сайт для лабораторної роботи з технічного SEO-аудиту.
+                Сайт містить навмисно створені SEO-помилки для аналізу в Google Search Console та Seobility.
+            </p>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <h2>Контакти</h2>
+
+        <div class="card">
+            <p>Email: demo@example.com</p>
+            <p>Телефон: +380 00 000 00 00</p>
+            <p>Адреса: Kyiv, Ukraine</p>
+        </div>
+    </section>
+
+    <!-- Deep nested links -->
+    <section>
+        <h2>Додаткові сторінки</h2>
+
+        <ul>
+            <li><a href="level1.html">Level 1</a></li>
+            <li><a href="folder/level2.html">Level 2</a></li>
+            <li><a href="folder/subfolder/level3.html">Level 3</a></li>
+            <li><a href="folder/subfolder/deep/level4.html">Level 4</a></li>
+        </ul>
+    </section>
+
+</main>
+
+<footer>
+    <p>SEO Demo Site © 2026</p>
+</footer>
+
+</body>
+</html>
