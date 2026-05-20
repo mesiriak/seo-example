@@ -54,7 +54,14 @@
             </p>
         </div>
 
-        <img src="https://picsum.photos/900/300?random=1" alt="Демонстраційне зображення SEO аудиту сайту" width="900" height="300">
+        <picture>
+            <source srcset="images/hero.webp" type="image/webp">
+            <img src="images/hero.jpg"
+                 alt="Демонстраційне зображення SEO аудиту сайту"
+                 width="900"
+                 height="300"
+                 fetchpriority="high">
+        </picture>
     </section>
 
     <section>
@@ -79,10 +86,30 @@
     <section>
         <h2>Останні статті блогу</h2>
         <article class="card">
+            <picture>
+                <source srcset="images/thumb-seo-audit.webp" type="image/webp">
+                <img class="card-preview-img"
+                     src="images/thumb-seo-audit.jpg"
+                     alt="Превʼю статті про SEO аудит"
+                     width="400"
+                     height="200"
+                     loading="lazy"
+                     decoding="async">
+            </picture>
             <h3><a href="blog-seo-audit.html">Що таке SEO аудит?</a></h3>
             <p>Покроковий огляд перевірки технічного стану та метаданих сайту.</p>
         </article>
         <article class="card">
+            <picture>
+                <source srcset="images/thumb-redirects.webp" type="image/webp">
+                <img class="card-preview-img"
+                     src="images/thumb-redirects.jpg"
+                     alt="Превʼю статті про SEO редіректи"
+                     width="400"
+                     height="200"
+                     loading="lazy"
+                     decoding="async">
+            </picture>
             <h3><a href="blog-redirects.html">Чому важливі redirect?</a></h3>
             <p>301, 302 та canonical: як правильно перенаправляти користувачів і ботів.</p>
         </article>

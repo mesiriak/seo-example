@@ -78,6 +78,13 @@ img {
     border-radius: 8px;
 }
 
+.card-preview-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 12px;
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

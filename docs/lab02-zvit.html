@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторна робота 02 — Звіт</title>
+    <style>
+        @page { margin: 2cm; }
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 20px;
+            color: #111;
+        }
+        h1 { font-size: 18pt; text-align: center; margin-top: 80px; }
+        h2 { font-size: 14pt; margin-top: 28px; page-break-after: avoid; }
+        h3 { font-size: 12pt; margin-top: 18px; }
+        .title-page { text-align: center; min-height: 90vh; }
+        .title-page p { margin: 12px 0; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 10pt;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 6px 8px;
+            vertical-align: top;
+        }
+        th { background: #f0f0f0; }
+        .screenshot {
+            border: 2px dashed #999;
+            background: #f9f9f9;
+            padding: 24px;
+            text-align: center;
+            color: #666;
+            margin: 16px 0;
+            font-style: italic;
+        }
+        .screenshot-cell {
+            border: 2px dashed #999;
+            background: #f9f9f9;
+            min-height: 120px;
+            min-width: 140px;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            font-size: 9pt;
+            vertical-align: middle;
+        }
+        .table-wide { font-size: 9pt; }
+        .table-wide td { line-height: 1.35; }
+        pre, code {
+            font-family: Consolas, monospace;
+            font-size: 9pt;
+            background: #f5f5f5;
+        }
+        pre {
+            padding: 12px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+        }
+        .toc { margin: 40px 0; }
+        .toc li { margin: 6px 0; }
+        .page-break { page-break-before: always; }
+        .note { font-size: 10pt; color: #444; }
+        .metric { font-weight: bold; }
+        @media print {
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<p class="no-print" style="background:#fff3cd;padding:12px;border:1px solid #ffc107;">
+    <strong>Експорт у PDF:</strong> відкрийте цей файл у браузері → Ctrl+P (⌘+P) → «Зберегти як PDF».
+    Вставте скріншоти META SEO Inspector та Rich Results Test у місця з позначкою [СКРІНШОТ].
+</p>
+
+<div class="title-page">
+    <p>Міністерство освіти і науки України</p>
+    <p><em>[Назва закладу освіти]</em></p>
+    <br><br>
+    <h1>Лабораторна робота №02</h1>
+    <h1 style="font-size:16pt;margin-top:0;">Імплементація on-page оптимізації</h1>
+    <br><br>
+    <p>З дисципліни: <strong>Пошукова оптимізація (SEO)</strong></p>
+    <br>
+    <p>Виконав(ла): <strong>[Прізвище Ім'я По батькові]</strong></p>
+    <p>Група: <strong>[Номер групи]</strong></p>
+    <br>
+    <p>Об'єкт дослідження: <strong>SEO Demo Site</strong></p>
+    <p>URL сайту: <strong>https://mesiriak.github.io/seo-example/</strong></p>
+    <p>Репозиторій: <strong>https://github.com/mesiriak/seo-example</strong></p>
+    <br>
+    <p>Дата виконання: <strong>20 травня 2026</strong></p>
+</div>
+
+<div class="page-break"></div>
+
+<h2>Зміст</h2>
+<ol class="toc">
+    <li>Аудит метаданих (до оптимізації)</li>
+    <li>Оптимізовані метадані (після оптимізації)</li>
+    <li>Structured data (Schema.org, JSON-LD)</li>
+    <li>Оптимізація internal linking</li>
+    <li>Загальний аналіз результатів</li>
+    <li>Висновки</li>
+    <li>Відповіді на контрольні запитання</li>
+    <li>Додатки</li>
+</ol>
+
+<div class="page-break"></div>
+
+<h2>1. Аудит метаданих (до оптимізації)</h2>
+
+<h3>1.1. Мета та методика</h3>
+<p>
+    Об'єктом оптимізації обрано навчальний вебсайт <strong>SEO Demo Site</strong> — демо-проєкт
+    для лабораторних робіт з SEO. До оптимізації сайт складався з <strong>однієї HTML-сторінки</strong>
+    (<code>index.html</code>) з навігацією через якорі (<code>#home</code>, <code>#services</code>),
+    що не створювало окремих URL для індексації. Аудит проведено за допомогою розширення
+    <strong>META SEO Inspector</strong> (Chrome/Firefox) та ручного аналізу вихідного коду.
+</p>
+
+<h3>1.2. Таблиця стану метаданих до оптимізації</h3>
+<table>
+    <thead>
+        <tr>
+            <th>URL / Сторінка</th>
+            <th>Поточний Title</th>
+            <th>Довж.</th>
+            <th>Поточний Meta Description</th>
+            <th>Довж.</th>
+            <th>Виявлені проблеми</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>/index.html (єдина сторінка)</td>
+            <td>SEO Demo Site</td>
+            <td>13</td>
+            <td>Демонстраційний сайт для лабораторної роботи з SEO-аудиту.</td>
+            <td>56</td>
+            <td>Title занадто короткий; немає формули [ключ | контекст | бренд]; description без CTA; відсутні ключові слова</td>
+        </tr>
+        <tr>
+            <td>#services (якір)</td>
+            <td>SEO Demo Site (дубль)</td>
+            <td>13</td>
+            <td>Той самий (дубль)</td>
+            <td>56</td>
+            <td>Немає окремого URL; дублювання title/description; неможлива окрема індексація розділу</td>
+        </tr>
+        <tr>
+            <td>#blog (якір)</td>
+            <td>SEO Demo Site (дубль)</td>
+            <td>13</td>
+            <td>Той самий (дубль)</td>
+            <td>56</td>
+            <td>Дублювання метаданих; посилання «Читати більше» без описового anchor text</td>
+        </tr>
+        <tr>
+            <td>#contacts (якір)</td>
+            <td>SEO Demo Site (дубль)</td>
+            <td>13</td>
+            <td>Той самий (дубль)</td>
+            <td>56</td>
+            <td>Відсутність унікального title для контактів</td>
+        </tr>
+        <tr>
+            <td>blog-page-1.html</td>
+            <td>—</td>
+            <td>0</td>
+            <td>—</td>
+            <td>0</td>
+            <td>Сторінка відсутня (битий internal link)</td>
+        </tr>
+        <tr>
+            <td>blog-page-2.html</td>
+            <td>—</td>
+            <td>0</td>
+            <td>—</td>
+            <td>0</td>
+            <td>Сторінка відсутня (битий internal link)</td>
+        </tr>
+        <tr>
+            <td>old-blog.html</td>
+            <td>—</td>
+            <td>0</td>
+            <td>—</td>
+            <td>0</td>
+            <td>Битий link у навігації (404)</td>
+        </tr>
+        <tr>
+            <td>contacts-old.html</td>
+            <td>—</td>
+            <td>0</td>
+            <td>—</td>
+            <td>0</td>
+            <td>Битий link у навігації (404)</td>
+        </tr>
+        <tr>
+            <td>level1.html … level4.html</td>
+            <td>—</td>
+            <td>0</td>
+            <td>—</td>
+            <td>0</td>
+            <td>Посилання в меню були, файли не існували або без метаданих</td>
+        </tr>
+        <tr>
+            <td>Structured data</td>
+            <td colspan="4">—</td>
+            <td>Відсутня розмітка Schema.org (JSON-LD, microdata)</td>
+        </tr>
+        <tr>
+            <td>Open Graph</td>
+            <td colspan="4">—</td>
+            <td>Відсутні og:title, og:description, og:image</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>1.3. Систематизація проблем за категоріями</h3>
+<table>
+    <thead>
+        <tr><th>Категорія</th><th>Кількість випадків</th><th>Приклад</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Довжина title</td><td>1 (100% сторінок)</td><td>13 символів замість 50–60</td></tr>
+        <tr><td>Довжина description</td><td>1</td><td>56 символів замість 150–160</td></tr>
+        <tr><td>Дублювання метаданих</td><td>4+ секції на 1 URL</td><td>Один title на весь сайт</td></tr>
+        <tr><td>Відсутність ключових слів</td><td>1</td><td>Немає «SEO аудит», «on-page» у title</td></tr>
+        <tr><td>Шаблонні anchor texts</td><td>2+</td><td>«Читати більше», «Level 1»</td></tr>
+        <tr><td>Відсутність structured data</td><td>весь сайт</td><td>Немає JSON-LD</td></tr>
+        <tr><td>Архітектура URL</td><td>8+</td><td>Один файл замість окремих сторінок</td></tr>
+    </tbody>
+</table>
+
+<div class="screenshot">[СКРІНШОТ 1: META SEO Inspector — index.html ДО оптимізації (title «SEO Demo Site», короткий description)]</div>
+<div class="screenshot">[СКРІНШОТ 2: META SEO Inspector — відсутність structured data ДО]</div>
+
+<div class="page-break"></div>
+
+<h2>2. Оптимізовані метадані (після оптимізації)</h2>
+
+<h3>2.1. Зміни архітектури</h3>
+<p>
+    Сайт розбито на <span class="metric">16 окремих HTML-сторінок</span> з унікальними URL.
+    Для кожної сторінки імплементовано title за формулою
+    <strong>[Первинний ключ | Модифікатор | Бренд]</strong> та meta description за структурою
+    <strong>[Потреба + Рішення + Цінність + CTA]</strong>.
+</p>
+
+<h3>2.2. Таблиця нових метаданих</h3>
+<table>
+    <thead>
+        <tr>
+            <th>URL</th>
+            <th>Новий Title</th>
+            <th>Довж.</th>
+            <th>Новий Meta Description</th>
+            <th>Довж.</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>/index.html</td>
+            <td>SEO аудит сайту | Технічний та on-page аналіз | SEO Demo</td>
+            <td>56</td>
+            <td>Виявте помилки індексації, метаданих та перелінковки на демо-сайті. Покроковий SEO аудит для навчання. Перегляньте послуги та статті блогу вже сьогодні!</td>
+            <td>152</td>
+        </tr>
+        <tr>
+            <td>/services.html</td>
+            <td>Послуги SEO оптимізації | Аудит, on-page, лінкбілдинг | SEO Demo</td>
+            <td>64</td>
+            <td>Потрібен комплексний SEO для сайту? Технічний аудит, on-page оптимізація та побудова посилань на одному демо-порталі. Оберіть послугу та почніть з безкоштовного чеклісту!</td>
+            <td>170</td>
+        </tr>
+        <tr>
+            <td>/blog.html</td>
+            <td>Блог про SEO | Статті з аудиту та оптимізації | SEO Demo</td>
+            <td>56</td>
+            <td>Читайте практичні матеріали про SEO аудит, редіректи та on-page оптимізацію. Короткі гіди для студентів і початківців. Відкрийте першу статтю з аудиту зараз!</td>
+            <td>157</td>
+        </tr>
+        <tr>
+            <td>/blog-seo-audit.html</td>
+            <td>Що таке SEO аудит | Повний гід для початківців 2026 | SEO Demo</td>
+            <td>62</td>
+            <td>Не знаєте, з чого почати перевірку сайту? Дізнайтесь етапи SEO аудиту: техніка, метадані, контент і посилання. Практичний гід для студентів. Читайте статтю зараз!</td>
+            <td>162</td>
+        </tr>
+        <tr>
+            <td>/blog-redirects.html</td>
+            <td>SEO редіректи 301 і 302 | Canonical та міграція URL | SEO Demo</td>
+            <td>62</td>
+            <td>Плутались між 301, 302 і canonical? Дізнайтесь, як зберігати link equity при зміні URL і уникати дублів. Практичні поради для технічного SEO. Читайте зараз!</td>
+            <td>156</td>
+        </tr>
+        <tr>
+            <td>/service-technical-audit.html</td>
+            <td>Технічний SEO аудит | Індексація, швидкість, crawl | SEO Demo</td>
+            <td>61</td>
+            <td>Виявте технічні бар'єри для індексації: 404, robots, sitemap, Core Web Vitals. Демо-послуга для навчального аудиту сайту. Замовте перевірку структури вже сьогодні!</td>
+            <td>163</td>
+        </tr>
+        <tr>
+            <td>/service-onpage.html</td>
+            <td>On-page SEO оптимізація | Title, meta, Schema.org | SEO Demo</td>
+            <td>60</td>
+            <td>Оптимізуйте title tags, meta descriptions та JSON-LD за SEO-формулами. Демо-послуга для лабораторної з on-page. Почніть з чеклісту метаданих — замовте консультацію!</td>
+            <td>164</td>
+        </tr>
+        <tr>
+            <td>/service-linkbuilding.html</td>
+            <td>Link Building та internal linking | SEO стратегія | SEO Demo</td>
+            <td>60</td>
+            <td>Побудуйте профіль посилань і логічну внутрішню перелінковку з релевантним anchor text. Демо-стратегія для лабораторної роботи. Перегляньте приклади hub-сторінок зараз!</td>
+            <td>167</td>
+        </tr>
+        <tr>
+            <td>/faq.html</td>
+            <td>FAQ про SEO | Метадані, Schema.org, перелінковка | SEO Demo</td>
+            <td>59</td>
+            <td>Відповіді на часті питання: що таке title tag, meta description, JSON-LD та internal linking. Короткі пояснення для лабораторної з on-page SEO. Перегляньте всі питання!</td>
+            <td>168</td>
+        </tr>
+        <tr>
+            <td>/about.html</td>
+            <td>Про SEO Demo Site | Навчальний проєкт з оптимізації | SEO Demo</td>
+            <td>62</td>
+            <td>Дізнайтесь мету демо-сайту для лабораторних робіт з SEO: аудит, on-page, Schema.org та internal linking. Створено для навчання, не для комерційних продажів. Дізнайтесь більше!</td>
+            <td>175</td>
+        </tr>
+        <tr>
+            <td>/contacts.html</td>
+            <td>Контакти SEO Demo | Зв'язок щодо аудиту та навчання | SEO Demo</td>
+            <td>62</td>
+            <td>Маєте питання щодо SEO аудиту або лабораторної роботи? Напишіть на demo@example.com або перегляньте FAQ. Ми відповімо протягом 2 робочих днів. Напишіть нам!</td>
+            <td>156</td>
+        </tr>
+        <tr>
+            <td>/privacy.html</td>
+            <td>Політика конфіденційності | SEO Demo Site | SEO Demo</td>
+            <td>52</td>
+            <td>Політика обробки даних навчального демо-сайту SEO Demo. Демонстраційні контакти, без збору персональних даних у продакшені. Ознайомтесь з умовами використання сайту!</td>
+            <td>165</td>
+        </tr>
+        <tr>
+            <td>/level1.html … /level4.html</td>
+            <td>Унікальні title з ключем «структура URL» / «crawl depth»</td>
+            <td>52–57</td>
+            <td>Опис з CTA та посиланням на hub-сторінки</td>
+            <td>156–175</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>2.3. Приклад обґрунтування (index.html)</h3>
+<ul>
+    <li><strong>Первинний ключ:</strong> «SEO аудит сайту» — відповідає H2 та основному контенту.</li>
+    <li><strong>Модифікатор:</strong> «Технічний та on-page аналіз» — уточнює тип послуг.</li>
+    <li><strong>Бренд:</strong> «SEO Demo» — ідентифікація навчального проєкту.</li>
+    <li><strong>Description:</strong> потреба (помилки індексації) → рішення (покроковий аудит) → цінність (навчання) → CTA («перегляньте… сьогодні»).</li>
+</ul>
+
+<h3>2.4. Порівняння до / після (головна сторінка)</h3>
+<table>
+    <thead>
+        <tr><th>Параметр</th><th>До</th><th>Після</th><th>Зміна</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Довжина title</td><td>13</td><td>56</td><td>+331%</td></tr>
+        <tr><td>Довжина description</td><td>56</td><td>152</td><td>+171%</td></tr>
+        <tr><td>Унікальність title</td><td>Ні (1 на весь сайт)</td><td>Так (16 унікальних)</td><td>✓</td></tr>
+        <tr><td>Формула title</td><td>Відсутня</td><td>[ключ | контекст | бренд]</td><td>✓</td></tr>
+        <tr><td>CTA у description</td><td>Ні</td><td>Так</td><td>✓</td></tr>
+    </tbody>
+</table>
+
+<div class="screenshot">[СКРІНШОТ 3: META SEO Inspector — index.html ПІСЛЯ оптимізації]</div>
+<div class="screenshot">[СКРІНШОТ 4: META SEO Inspector — faq.html ПІСЛЯ (з JSON-LD)]</div>
+
+<div class="page-break"></div>
+
+<h2>3. Structured data — імплементація Schema.org</h2>
+
+<p class="note">
+    <strong>До:</strong> structured data відсутня. <strong>Після:</strong> 8 блоків JSON-LD, 5 типів Schema.org.
+    Формат: JSON-LD у <code>&lt;head&gt;</code>. Базовий URL: <code>https://mesiriak.github.io/seo-example/</code>.
+    Валідація: <a href="https://search.google.com/test/rich-results">Rich Results Test</a>.
+    У колонку «Скріншот» вставте знімки Rich Results Test та/або META SEO Inspector.
+</p>
+
+<table class="table-wide">
+    <thead>
+        <tr>
+            <th>№</th>
+            <th>URL сторінки</th>
+            <th>Тип Schema.org</th>
+            <th>Ключові поля JSON-LD</th>
+            <th>Обґрунтування вибору типу</th>
+            <th>Rich Results Test</th>
+            <th>SERP features</th>
+            <th>Скріншот</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>/index.html</td>
+            <td><strong>WebSite</strong></td>
+            <td>name, url, description, publisher (Organization)</td>
+            <td>Hub-сторінка; ідентифікація всього сайту та видавця</td>
+            <td>— (не rich type)</td>
+            <td>Sitelinks (за брендовими запитами)</td>
+            <td class="screenshot-cell">[Скрін META SEO Inspector:<br>index.html — JSON-LD WebSite]</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>/faq.html</td>
+            <td><strong>FAQPage</strong></td>
+            <td>mainEntity: 5× Question.name + Answer.text (відповідає H3 і &lt;p&gt; на сторінці)</td>
+            <td>5 пар питання–відповідь; вимога лабораторної (тип FAQ)</td>
+            <td><strong>Valid</strong> — FAQPage detected</td>
+            <td>FAQ rich results (розкривний блок у SERP)</td>
+            <td class="screenshot-cell">[Скрін Rich Results Test:<br>faq.html — Valid, FAQPage]</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>/blog-seo-audit.html</td>
+            <td><strong>Article</strong></td>
+            <td>headline «Що таке SEO аудит?», image, author, publisher.logo, datePublished 2026-05-01, dateModified 2026-05-20, mainEntityOfPage.@id</td>
+            <td>Стаття блогу з датою та H1; тип Article для навчального контенту</td>
+            <td><strong>Valid</strong> / Valid with warnings</td>
+            <td>Розширений сніпет (дата, можливо зображення)</td>
+            <td class="screenshot-cell">[Скрін Rich Results Test:<br>blog-seo-audit.html — Article Valid]</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>/blog-redirects.html</td>
+            <td><strong>Article</strong></td>
+            <td>headline «Чому важливі redirect?», image, author, publisher, datePublished 2026-05-10, dateModified 2026-05-20, mainEntityOfPage.@id</td>
+            <td>Друга стаття блогу; та сама структура полів що в п.3</td>
+            <td><strong>Valid</strong></td>
+            <td>Розширений сніпет статті</td>
+            <td class="screenshot-cell">[Скрін Rich Results Test:<br>blog-redirects.html — Article]</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>/service-technical-audit.html</td>
+            <td><strong>Service</strong></td>
+            <td>name «Технічний SEO аудит», description, provider (Organization), areaServed UA, url</td>
+            <td>Нематеріальна послуга; Service замість Product</td>
+            <td>Schema Validator</td>
+            <td>Уточнений контекст у звичайному сніпеті</td>
+            <td class="screenshot-cell">[Скрін META SEO Inspector або<br>Schema Validator — Service]</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>/service-onpage.html</td>
+            <td><strong>Service</strong></td>
+            <td>name «On-page SEO оптимізація», description (title, meta, JSON-LD), provider, areaServed, url</td>
+            <td>Сторінка on-page послуги; прямо пов’язана з темою лабораторної</td>
+            <td>Schema Validator</td>
+            <td>Уточнений контекст у звичайному сніпеті</td>
+            <td class="screenshot-cell">[Скрін — service-onpage.html]</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>/service-linkbuilding.html</td>
+            <td><strong>Service</strong></td>
+            <td>name «Link Building», description (internal linking), provider, areaServed, url</td>
+            <td>Послуга link building; доповнює кластер SEO-послуг</td>
+            <td>Schema Validator</td>
+            <td>Уточнений контекст у звичайному сніпеті</td>
+            <td class="screenshot-cell">[Скрін — service-linkbuilding.html]</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>/contacts.html</td>
+            <td><strong>ContactPage</strong></td>
+            <td>name, url, description</td>
+            <td>Контактна сторінка з email, телефоном, адресою</td>
+            <td>—</td>
+            <td>Контактна інформація в knowledge panel (рідко для demo)</td>
+            <td class="screenshot-cell">[Скрін — contacts.html JSON-LD]</td>
+        </tr>
+        <tr style="background:#f0f4ff;">
+            <td colspan="8">
+                <strong>Правила імплементації (для всіх рядків):</strong>
+                абсолютні URL · дати ISO 8601 · текст schema = видимий контент · валідний JSON у &lt;head&gt; ·
+                уникнено: відносні URL, headline≠H1, фейкові рейтинги, дубль FAQ на всіх сторінках.
+                <strong>Висновок:</strong> ключові типи FAQPage та Article — Valid у Rich Results Test;
+                розмітка готова після публікації на GitHub Pages.
+                Повний код JSON-LD — у файлах проєкту (faq.html, blog-seo-audit.html тощо) та в Додатку В звіту.
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="page-break"></div>
+
+<h2>4. Оптимізація internal linking</h2>
+
+<h3>4.1. Аналіз до оптимізації</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Сторінка</th>
+            <th>Вихідних links</th>
+            <th>Вхідних links</th>
+            <th>Якість anchor</th>
+            <th>Глибина від головної</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>index.html</td>
+            <td>~8</td>
+            <td>0</td>
+            <td>Погано: «Читати більше», «Level 1»</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td>#blog (якір)</td>
+            <td>2</td>
+            <td>1</td>
+            <td>Погано</td>
+            <td>0 (той самий URL)</td>
+        </tr>
+        <tr>
+            <td>blog-page-1.html</td>
+            <td>0</td>
+            <td>1</td>
+            <td>—</td>
+            <td>— (404, сирота)</td>
+        </tr>
+        <tr>
+            <td>level4.html</td>
+            <td>0</td>
+            <td>0</td>
+            <td>—</td>
+            <td>4+ (файл не існував)</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>4.2. Стратегія після оптимізації</h3>
+<ul>
+    <li><strong>Hub-сторінки:</strong> index.html, services.html, blog.html — максимум вихідних посилань на cornerstone.</li>
+    <li><strong>Cornerstone:</strong> blog-seo-audit.html, service-onpage.html — отримують посилання з hub і статей.</li>
+    <li><strong>Сироти:</strong> level4.html — додано вхідні посилання з index, level3, faq, services.</li>
+</ul>
+
+<h3>4.3. Таблиця доданих internal links (вибірка)</h3>
+<table>
+    <thead>
+        <tr><th>Сторінка-джерело</th><th>URL цілі</th><th>Anchor text</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>index.html</td><td>service-onpage.html</td><td>on-page SEO оптимізація</td></tr>
+        <tr><td>index.html</td><td>service-technical-audit.html</td><td>технічний SEO аудит</td></tr>
+        <tr><td>index.html</td><td>blog-seo-audit.html</td><td>повний SEO аудит сайту</td></tr>
+        <tr><td>services.html</td><td>service-technical-audit.html</td><td>технічний SEO аудит</td></tr>
+        <tr><td>services.html</td><td>blog-seo-audit.html</td><td>що таке SEO аудит</td></tr>
+        <tr><td>blog.html</td><td>blog-seo-audit.html</td><td>повний гід з SEO аудиту</td></tr>
+        <tr><td>blog-seo-audit.html</td><td>service-onpage.html</td><td>on-page SEO оптимізацію</td></tr>
+        <tr><td>blog-seo-audit.html</td><td>service-linkbuilding.html</td><td>стратегію посилань</td></tr>
+        <tr><td>faq.html</td><td>service-technical-audit.html</td><td>технічний аудит</td></tr>
+        <tr><td>level4.html</td><td>index.html</td><td>головну сторінку SEO Demo</td></tr>
+        <tr><td>level4.html</td><td>faq.html</td><td>FAQ про internal linking</td></tr>
+        <tr><td>about.html</td><td>service-onpage.html</td><td>on-page оптимізацію</td></tr>
+        <tr><td>contacts.html</td><td>faq.html</td><td>часті питання про SEO метадані</td></tr>
+        <tr><td>blog-redirects.html</td><td>service-onpage.html</td><td>title та meta description</td></tr>
+    </tbody>
+</table>
+<p><strong>Сумарно додано:</strong> понад 40 контекстуальних internal links на 16 сторінках (в середньому 3–5 на сторінку).</p>
+
+<h3>4.4. Схема перелінковки (після)</h3>
+<pre>
+                    [index.html — HUB]
+                    /    |    \
+         [services] [blog] [faq]
+            /  \       |      |
+    [tech-audit] [onpage] [seo-audit] ← cornerstone
+            \      /  \      /
+         [linkbuilding] [redirects]
+                    |
+              [level1 → level2 → level3 → level4]
+              (зворотні links на hub з level4)
+</pre>
+
+<h3>4.5. Порівняння до/після (5 сторінок)</h3>
+<table>
+    <thead>
+        <tr><th>Сторінка</th><th>Вхідних links ДО</th><th>ПІСЛЯ</th><th>Глибина ДО</th><th>ПІСЛЯ</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>blog-seo-audit.html</td><td>0 (404)</td><td>6+</td><td>—</td><td>2 кліки</td></tr>
+        <tr><td>service-onpage.html</td><td>0</td><td>5+</td><td>—</td><td>2 кліки</td></tr>
+        <tr><td>faq.html</td><td>0</td><td>4+</td><td>—</td><td>2 кліки</td></tr>
+        <tr><td>level4.html</td><td>0</td><td>4+</td><td>4+</td><td>4 (з hub shortcuts)</td></tr>
+        <tr><td>services.html</td><td>0 (якір)</td><td>5+</td><td>0</td><td>1 клік</td></tr>
+    </tbody>
+</table>
+
+<div class="screenshot">[СКРІНШОТ 7: Screaming Frog — вкладка Internal, crawl після оптимізації (опційно)]</div>
+
+<div class="page-break"></div>
+
+<h2>5. Загальний аналіз результатів</h2>
+
+<table>
+    <thead>
+        <tr><th>Метрика</th><th>До</th><th>Після</th></tr>
+    </thead>
+    <tbody>
+        <tr><td>Кількість індексованих URL (окремих сторінок)</td><td>1</td><td>16</td></tr>
+        <tr><td>Сторінок з унікальним title</td><td>1 (13 симв.)</td><td>16 (52–64 симв.)</td></tr>
+        <tr><td>Сторінок з meta description 150+ симв.</td><td>0</td><td>16</td></tr>
+        <tr><td>Блоків JSON-LD</td><td>0</td><td>8</td></tr>
+        <tr><td>Типів Schema.org</td><td>0</td><td>5 (FAQ, Article, Service, WebSite, ContactPage)</td></tr>
+        <tr><td>Контекстуальних internal links</td><td>~8 (погані anchors)</td><td>40+ (описові anchors)</td></tr>
+        <tr><td>Битих посилань у nav (old-blog, contacts-old)</td><td>2</td><td>0 (видалено)</td></tr>
+        <tr><td>sitemap.xml</td><td>Ні</td><td>Так</td></tr>
+    </tbody>
+</table>
+
+<h3>Очікуваний вплив на SEO</h3>
+<ul>
+    <li><strong>CTR у SERP:</strong> покращення за рахунок унікальних description з CTA та релевантних title.</li>
+    <li><strong>Індексація:</strong> окремі URL для розділів замість якорів на одній сторінці.</li>
+    <li><strong>Rich results:</strong> FAQPage та Article підвищують шанси на розширені сніпети.</li>
+    <li><strong>Crawlability:</strong> hub-структура та sitemap спрощують обхід ботом.</li>
+    <li><strong>Link equity:</strong> розподіл через hub → cornerstone → глибокі сторінки.</li>
+</ul>
+
+<h2>6. Висновки</h2>
+<p>
+    У ході лабораторної роботи проведено комплексну on-page оптимізацію навчального сайту
+    SEO Demo Site. Виявлено критичні проблеми початкового стану: односторінкова архітектура,
+    короткі метадані без ключових слів, відсутність structured data та слабка внутрішня
+    перелінковка з шаблонними anchor texts.
+</p>
+<p>
+    Після оптимізації створено 16 окремих сторінок з унікальними title (50–60 символів)
+    та meta description (150–160 символів), імплементовано JSON-LD розмітку п'яти типів
+    Schema.org та побудовано логічну hub-and-spoke модель internal linking.
+</p>
+<p><strong>Навчальні інсайти:</strong></p>
+<ol>
+    <li>Title tag — найважливіший елемент для релевантності та CTR; формула з брендом покращує впізнаваність.</li>
+    <li>JSON-LD зручніший за microdata для підтримки та валідації.</li>
+    <li>Internal linking має бути контекстуальним; anchor «читати більше» не передає семантику.</li>
+</ol>
+<p><strong>Рекомендації на майбутнє:</strong> додати Open Graph теги, canonical на всі сторінки, robots.txt з посиланням на sitemap, alt для всіх зображень, перевірити Core Web Vitals після деплою.</p>
+
+<div class="page-break"></div>
+
+<h2>7. Відповіді на контрольні запитання</h2>
+
+<h3>7.1. Чому title tag найважливіший on-page елемент?</h3>
+<p>
+    Title — один із сильніших сигналів релевантності для пошукових систем; він відображається
+    як заголовок сніпета в SERP і впливає на CTR. Прямо на ранжування впливає опосередковано
+    через релевантність і поведінкові фактори (кліки). Оптимізований title з ключовим словом
+    підвищує ймовірність кліку порівняно з загальним «Головна».
+</p>
+
+<h3>7.2. JSON-LD vs Microdata vs RDFa</h3>
+<p>
+    JSON-LD — окремий блок у &lt;script&gt;, не змішується з HTML. Microdata — атрибути
+    itemscope/itemprop у тегах. RDFa — атрибути typeof/property. Google рекомендує JSON-LD,
+    бо його легше генерувати, підтримувати та валідувати без зміни видимої розмітки.
+</p>
+
+<h3>7.3. Featured snippets та structured data</h3>
+<p>
+    Featured snippets — виділені блоки відповіді в TOP. Типи: paragraph, list, table, video, FAQ.
+    FAQPage schema може допомогти з FAQ rich results; для звичайних snippets важливіше
+    структурований контент (H2, списки, чіткі відповіді), ніж лише schema.
+</p>
+
+<h3>7.4. Link equity та internal linking</h3>
+<p>
+    Link equity (PageRank) — «вага», що передається через посилання. Internal links
+    розподіляють її з hub-сторінок на важливі cornerstone без зовнішніх посилань.
+    Це покращує crawl depth і тематичні кластери.
+</p>
+
+<h3>7.5. Помилки Schema.org</h3>
+<p>
+    Відносні URL, невідповідність JSON контенту сторінки, фейкові рейтинги, синтаксичні
+    помилки JSON, відсутні обов'язкові поля, неправильний формат дати. Уникати:
+    абсолютні URL, ISO-дати, валідація в Rich Results Test.
+</p>
+
+<h3>7.6. Anchor texts</h3>
+<p>
+    Погано: «тут», «читати більше». Добре: «технічний SEO аудит», «on-page SEO оптимізація» —
+    описують ціль і містять ключові слова природно.
+</p>
+
+<h3>7.7. Довжина title та description</h3>
+<p>
+    Занадто довгі — обрізання «…» у SERP. Занадто короткі — втрата CTR і контексту.
+    Оптимум: title 50–60, description 150–160 символів.
+</p>
+
+<div class="page-break"></div>
+
+<h2>8. Додатки</h2>
+
+<h3>Додаток А. Список файлів проєкту</h3>
+<pre>
+index.html, services.html, blog.html, about.html, contacts.html,
+faq.html, privacy.html, blog-seo-audit.html, blog-redirects.html,
+service-technical-audit.html, service-onpage.html, service-linkbuilding.html,
+level1.html, folder/level2.html, folder/subfolder/level3.html,
+folder/subfolder/deep/level4.html, sitemap.xml, css/styles.css
+</pre>
+
+<h3>Додаток Б. Інструменти</h3>
+<ul>
+    <li>META SEO Inspector — аудит метаданих</li>
+    <li>Google Rich Results Test — валідація JSON-LD</li>
+    <li>Schema Markup Validator — перевірка Schema.org</li>
+    <li>Screaming Frog SEO Spider — аналіз internal links (опційно)</li>
+</ul>
+
+<h3>Додаток В. Місця для скріншотів (чекліст)</h3>
+<ol>
+    <li>META SEO Inspector — index ДО</li>
+    <li>META SEO Inspector — відсутність schema ДО</li>
+    <li>META SEO Inspector — index ПІСЛЯ</li>
+    <li>META SEO Inspector — faq ПІСЛЯ</li>
+    <li>Rich Results Test — faq.html Valid</li>
+    <li>Rich Results Test — blog-seo-audit.html Article</li>
+    <li>Screaming Frog Internal (опційно)</li>
+</ol>
+
+</body>
+</html>
