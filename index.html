@@ -3,186 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEO Demo Site</title>
-    <meta name="description" content="Демонстраційний сайт для лабораторної роботи з SEO-аудиту.">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background: #f4f4f4;
-            color: #222;
-        }
-
-        header {
-            background: #1f2937;
-            color: white;
-            padding: 20px;
-        }
-
-        nav a {
-            color: white;
-            margin-right: 15px;
-            text-decoration: none;
-        }
-
-        main {
-            max-width: 1000px;
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-        }
-
-        section {
-            margin-bottom: 50px;
-        }
-
-        footer {
-            background: #111827;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        .card {
-            background: #f9fafb;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        img {
-            max-width: 100%;
-            border-radius: 8px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-    </style>
+    <title>SEO аудит сайту | Технічний та on-page аналіз | SEO Demo</title>
+    <meta name="description" content="Виявте помилки індексації, метаданих та перелінковки на демо-сайті. Покроковий SEO аудит для навчання. Перегляньте послуги та статті блогу вже сьогодні!">
+    <link rel="stylesheet" href="css/styles.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "SEO Demo Site",
+      "url": "https://mesiriak.github.io/seo-example/",
+      "description": "Навчальний демо-сайт для лабораторних робіт з SEO",
+      "publisher": {
+        "@type": "Organization",
+        "name": "SEO Demo Site"
+      }
+    }
+    </script>
 </head>
 <body>
 
 <header>
-    <h1>SEO Demo Site</h1>
+    <h1><a href="index.html">SEO Demo Site</a></h1>
     <nav>
-        <a href="#home">Головна</a>
-        <a href="#services">Послуги</a>
-        <a href="#blog">Блог</a>
-        <a href="#contacts">Контакти</a>
-
-        <!-- Intentional broken links for SEO audit -->
-        <a href="old-blog.html">Старий блог</a>
-        <a href="contacts-old.html">Старі контакти</a>
+        <a href="index.html">Головна</a>
+        <a href="services.html">Послуги</a>
+        <a href="blog.html">Блог</a>
+        <a href="about.html">Про нас</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contacts.html">Контакти</a>
     </nav>
 </header>
 
 <main>
-
-    <section id="home">
+    <section>
         <h2>Головна сторінка</h2>
 
         <div class="card">
             <p>
-                Це демонстраційний сайт для лабораторної роботи з технічного SEO-аудиту.
-                Сайт містить навмисно створені SEO-помилки для аналізу в Google Search Console та Seobility.
+                Ласкаво просимо на <strong>SEO Demo Site</strong> — навчальний проєкт для
+                лабораторних робіт з пошукової оптимізації. Тут ви знайдете приклади
+                <a href="service-onpage.html">on-page SEO оптимізації</a>,
+                <a href="service-technical-audit.html">технічного SEO аудиту</a> та
+                матеріали про <a href="blog-seo-audit.html">повний SEO аудит сайту</a>.
+            </p>
+            <p>
+                Сайт містить навмисні помилки для аналізу в Search Console, Seobility та
+                META SEO Inspector. Після оптимізації метаданих, structured data та
+                <a href="services.html">внутрішньої перелінковки</a> ви можете порівняти
+                результати «до» та «після» у звіті лабораторної роботи.
             </p>
         </div>
 
-        <!-- Image without alt attribute intentionally -->
-        <img src="https://picsum.photos/900/300" />
+        <img src="https://picsum.photos/900/300?random=1" alt="Демонстраційне зображення SEO аудиту сайту" width="900" height="300">
     </section>
 
-    <section id="services">
-        <h2>SEO Послуги</h2>
-
+    <section>
+        <h2>Наші SEO послуги</h2>
         <div class="grid">
             <div class="card">
-                <h3>Технічний аудит</h3>
-                <p>
-                    Аналіз структури сайту, індексації, швидкості та внутрішньої перелінковки.
-                </p>
+                <h3><a href="service-technical-audit.html">Технічний аудит</a></h3>
+                <p>Аналіз індексації, швидкості, crawlability та структури URL.</p>
             </div>
-
             <div class="card">
-                <h3>On-page SEO</h3>
-                <p>
-                    Оптимізація meta title, description, headings та контенту.
-                </p>
+                <h3><a href="service-onpage.html">On-page SEO</a></h3>
+                <p>Оптимізація title, meta description, заголовків H1–H6 та контенту.</p>
             </div>
-
             <div class="card">
-                <h3>Link Building</h3>
-                <p>
-                    Побудова профілю зовнішніх посилань.
-                </p>
+                <h3><a href="service-linkbuilding.html">Link Building</a></h3>
+                <p>Стратегія зовнішніх посилань та внутрішньої перелінковки.</p>
             </div>
         </div>
+        <p><a class="btn" href="services.html">Усі послуги SEO оптимізації</a></p>
     </section>
 
-    <section id="blog">
-        <h2>Блог</h2>
-
-        <article class="card">
-            <h3>Що таке SEO аудит?</h3>
-            <p>
-                SEO аудит — це процес перевірки технічного стану сайту для покращення його видимості у пошукових системах.
-            </p>
-            <a href="blog-page-1.html">Читати більше</a>
-        </article>
-
-        <article class="card">
-            <h3>Чому важливі redirect?</h3>
-            <p>
-                Redirect допомагають правильно перенаправляти користувачів та пошукових роботів.
-            </p>
-            <a href="blog-page-2.html">Читати більше</a>
-        </article>
-    </section>
-
-    <!-- Duplicate-like content intentionally -->
-    <section id="home-copy">
-        <h2>Головна сторінка</h2>
-
-        <div class="card">
-            <p>
-                Це демонстраційний сайт для лабораторної роботи з технічного SEO-аудиту.
-                Сайт містить навмисно створені SEO-помилки для аналізу в Google Search Console та Seobility.
-            </p>
-        </div>
-    </section>
-
-    <section id="contacts">
-        <h2>Контакти</h2>
-
-        <div class="card">
-            <p>Email: demo@example.com</p>
-            <p>Телефон: +380 00 000 00 00</p>
-            <p>Адреса: Kyiv, Ukraine</p>
-        </div>
-    </section>
-
-    <!-- Deep nested links -->
     <section>
-        <h2>Додаткові сторінки</h2>
+        <h2>Останні статті блогу</h2>
+        <article class="card">
+            <h3><a href="blog-seo-audit.html">Що таке SEO аудит?</a></h3>
+            <p>Покроковий огляд перевірки технічного стану та метаданих сайту.</p>
+        </article>
+        <article class="card">
+            <h3><a href="blog-redirects.html">Чому важливі redirect?</a></h3>
+            <p>301, 302 та canonical: як правильно перенаправляти користувачів і ботів.</p>
+        </article>
+        <p><a class="btn" href="blog.html">Перейти до блогу про SEO</a></p>
+    </section>
 
-        <ul>
-            <li><a href="level1.html">Level 1</a></li>
-            <li><a href="folder/level2.html">Level 2</a></li>
-            <li><a href="folder/subfolder/level3.html">Level 3</a></li>
-            <li><a href="folder/subfolder/deep/level4.html">Level 4</a></li>
+    <section>
+        <h2>Корисні розділи</h2>
+        <ul class="links-list">
+            <li><a href="faq.html">Часті питання про SEO та метадані</a></li>
+            <li><a href="about.html">Про навчальний проєкт SEO Demo</a></li>
+            <li><a href="level1.html">Структура глибоких сторінок (рівень 1)</a></li>
         </ul>
     </section>
-
 </main>
 
 <footer>
-    <p>SEO Demo Site © 2026</p>
+    <p>SEO Demo Site © 2026 · <a href="privacy.html">Політика конфіденційності</a> · <a href="contacts.html">Контакти</a></p>
 </footer>
 
 </body>
