@@ -1,0 +1,13 @@
+# robots.txt — SEO Demo Site (навчальний проєкт)
+# https://mesiriak.github.io/seo-example/
+
+User-agent: *
+Disallow: /docs/
+Disallow: /drafts/
+Disallow: /private/
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+Sitemap: https://mesiriak.github.io/seo-example/sitemap.xml
